@@ -14,7 +14,7 @@ const Clock: FC<PropsClock> = () => {
     setDate(new Date());
   };
 
-  return <div className={styles.clock}>{date.toLocaleTimeString()}</div>;
+  return <div>{date.toLocaleTimeString()}</div>;
 };
 
 export { Clock };

@@ -3,6 +3,7 @@ import { action } from "@storybook/addon-actions";
 
 import { rootDecorator } from "../../../.storybook/decorators";
 import { Startbar } from "../";
+import { Languages } from "../../store/actions/language";
 
 export default {
   title: "Startbar",
@@ -10,4 +11,10 @@ export default {
   decorators: [rootDecorator]
 };
 
-export const Main = () => <Startbar onClick={action("clicked")} />;
+export const Main = () => (
+  <Startbar
+    language={Languages.ENGLISH}
+    changeLanguageHandler={action("clicked")}
+    toggleStartMenu={action("clicked")}
+  />
+);

@@ -38,3 +38,51 @@
   font-weight: 900;
   flex-shrink: 0;
 }
+
+.clock {
+  margin-left: auto;
+  height: 100%;
+  width: 12rem;
+  background: linear-gradient(
+    to bottom,
+    #19b7eb 0%,
+    #1090e7 10%,
+    #1090e7 50%,
+    #1090e7 90%,
+    #19b7eb 100%
+  );
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 1rem;
+  align-items: center;
+  font-size: 1.2rem;
+  box-shadow: inset 0px 0px 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.language {
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  padding-right: 0.5rem;
+}
+
+.language div {
+  width: 2rem;
+  height: 1.5rem;
+  background-size: cover;
+  background-position: center center;
+  margin-left: 0.5rem;
+}
+
+.en {
+  background-image: url("../../assets/en-flag.png");
+}
+
+.pl {
+  background-image: url("../../assets/pl-flag.png");
+}

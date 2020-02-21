@@ -13,6 +13,7 @@ import "./styles/global.scss";
 const App: React.FC = () => {
   const loading = useSelector((state: IStore) => state.loading);
   const error = useSelector((state: IStore) => state.error);
+  const language = useSelector((state: IStore) => state.language);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <IntlProvider locale="en" messages={messages["en"]}>
+    <IntlProvider locale="en" messages={messages[language]}>
       {error ? <Error /> : loading ? <Loading /> : <Desktop />}
     </IntlProvider>
   );
