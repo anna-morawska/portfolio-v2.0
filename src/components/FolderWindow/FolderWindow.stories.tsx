@@ -11,7 +11,11 @@ export default {
 };
 
 export const Main = () => (
-  <FolderWindow title="React Native Pizza App" onClick={action("clicked")}>
+  <FolderWindow
+    name="example"
+    title="React Native Pizza App"
+    onClick={action("clicked")}
+  >
     <File
       fileName="readme.txt"
       type={IconType.note}

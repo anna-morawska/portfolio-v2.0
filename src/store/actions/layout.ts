@@ -25,6 +25,11 @@ export interface ICloseAlertAction {
   name: string;
 }
 
+export interface ISetActiveWindowAction {
+  type: ActionTypes.SET_ACTIVE_WINDOW;
+  name: string;
+}
+
 export const openStartMenuAction = (open: boolean) =>
   <IOpenStartMenuAction>{
     type: ActionTypes.OPEN_START_MENU,
@@ -52,5 +57,11 @@ export const openAlert = (name: string) =>
 export const closeAlert = (name: string) =>
   <ICloseAlertAction>{
     type: ActionTypes.CLOSE_ALERT,
+    name
+  };
+
+export const setActiveWindow = (name: string) =>
+  <ISetActiveWindowAction>{
+    type: ActionTypes.SET_ACTIVE_WINDOW,
     name
   };

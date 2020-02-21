@@ -1,10 +1,12 @@
 import React, { FC, ReactNode } from "react";
 import classNames from "classnames";
-import { WindowTitle } from "../";
-import { WindowMenu } from "../WindowMenu/WindowMenu";
+
+import { WindowTitle, WindowMenu } from "../";
+
 import styles from "./Window.module.scss";
 
 interface PropsWindow {
+  name: string;
   children: ReactNode;
   showMenu: boolean;
   iconPath: string;
@@ -22,17 +24,19 @@ const Window: FC<PropsWindow> = ({
   onClick,
   alert,
   image
-}) => (
-  <div
-    className={classNames(styles.window, {
-      [styles.alert]: alert,
-      [styles.imageWindow]: image
-    })}
-  >
-    <WindowTitle iconPath={iconPath} title={title} onClick={onClick} />
-    {showMenu && <WindowMenu />}
-    {children}
-  </div>
-);
+}) => {
+  return (
+    <div
+      className={classNames(styles.window, {
+        [styles.alert]: alert,
+        [styles.imageWindow]: image
+      })}
+    >
+      <WindowTitle iconPath={iconPath} title={title} onClick={onClick} />
+      {showMenu && <WindowMenu />}
+      {children}
+    </div>
+  );
+};
 
 export { Window };

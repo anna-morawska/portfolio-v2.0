@@ -12,6 +12,7 @@ export default {
 
 export const Main = () => (
   <IrfanViewWindow
+    name="example"
     imgUrl="https://raw.githubusercontent.com/anna-morawska/react-native-pizza-builder/master/assets/readme-1.jpg"
     onClick={action("clicked")}
   />

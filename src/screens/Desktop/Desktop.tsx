@@ -38,6 +38,7 @@ const Desktop: React.FC = () => {
       <div className={styles.icons}>
         {folders.map(folderName => (
           <FolderWindow
+            name={folderName}
             key={folderName}
             title={folderName}
             onClick={onClickFolderHandler(folderName, true)}
@@ -45,6 +46,7 @@ const Desktop: React.FC = () => {
         ))}
         {alerts.map(alertName => (
           <Alert
+            name={alertName}
             key={alertName}
             onClick={onClickAlertHandler(alertName)}
             title={translate("alert.title")}

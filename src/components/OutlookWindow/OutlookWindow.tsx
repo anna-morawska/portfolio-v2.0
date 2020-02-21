@@ -6,11 +6,13 @@ import outlookIcon from "../../assets/outlook.png";
 
 interface PropsOutlookWindow {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  name: string;
 }
 
-const OutlookWindow: FC<PropsOutlookWindow> = ({ onClick }) => {
+const OutlookWindow: FC<PropsOutlookWindow> = ({ onClick, name }) => {
   return (
     <Window
+      name={name}
       showMenu={true}
       onClick={onClick}
       iconPath={outlookIcon}

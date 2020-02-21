@@ -10,4 +10,6 @@ export default {
   decorators: [rootDecorator]
 };
 
-export const Main = () => <OutlookWindow onClick={action("clicked")} />;
+export const Main = () => (
+  <OutlookWindow name="example" onClick={action("clicked")} />
+);

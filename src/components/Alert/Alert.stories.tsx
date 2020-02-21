@@ -12,6 +12,7 @@ export default {
 
 export const Main = () => (
   <Alert
+    name="example"
     text={translate("alert.text")}
     title={translate("alert.title")}
     onClick={action("clicked")}

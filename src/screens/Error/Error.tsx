@@ -12,6 +12,7 @@ const Error: FC<ErrorProps> = () => {
   ) : (
     <Layout>
       <Alert
+        name="example"
         onClick={() => setIsBlueScreenVisible(true)}
         title={translate("alert.error")}
         text={translate("alert.error.text")}

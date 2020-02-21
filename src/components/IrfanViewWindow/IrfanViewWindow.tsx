@@ -7,10 +7,16 @@ import styles from "./IrfanViewWindow.module.scss";
 interface PropsIrfanViewWindow {
   imgUrl: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  name: string;
 }
 
-const IrfanViewWindow: FC<PropsIrfanViewWindow> = ({ imgUrl, onClick }) => (
+const IrfanViewWindow: FC<PropsIrfanViewWindow> = ({
+  imgUrl,
+  onClick,
+  name
+}) => (
   <Window
+    name={name}
     image
     showMenu={true}
     onClick={onClick}

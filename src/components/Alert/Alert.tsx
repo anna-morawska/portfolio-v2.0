@@ -9,11 +9,13 @@ interface AlertProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   title: string | ReactNode;
   text: string | ReactNode;
+  name: string;
 }
 
-const $Alert: FC<AlertProps> = ({ onClick, title, text }) => {
+const $Alert: FC<AlertProps> = ({ onClick, title, text, name }) => {
   return (
     <Window
+      name={name}
       alert
       showMenu={false}
       onClick={onClick}

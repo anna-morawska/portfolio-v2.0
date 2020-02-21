@@ -7,11 +7,13 @@ import styles from "./NotepadWindow.module.scss";
 interface PropsNotepad {
   text: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  name: string;
 }
 
-const NotepadWindow: FC<PropsNotepad> = ({ text, onClick }) => {
+const NotepadWindow: FC<PropsNotepad> = ({ text, onClick, name }) => {
   return (
     <Window
+      name={name}
       showMenu={true}
       onClick={onClick}
       iconPath={noteIcon}

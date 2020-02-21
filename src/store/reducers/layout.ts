@@ -3,20 +3,22 @@ import {
   ICloseFolderAction,
   IOpenFolderAction,
   IOpenAlertAction,
-  ICloseAlertAction
+  ICloseAlertAction,
+  ISetActiveWindowAction
 } from "../actions/layout";
 import { ActionTypes } from "../types";
 
 const initialState = {
+  activeWindowName: "",
+  numberOfOpenedWindows: 0,
   isStartMenuOpen: false,
   openedFolders: [],
   openedAlerts: []
 };
 
-//   activeWindowId: "uuid",
-//   openWindowsId: ["uuid"]
-
 export interface ILayoutState {
+  activeWindowName: string;
+  numberOfOpenedWindows: number;
   isStartMenuOpen: boolean;
   openedFolders: string[];
   openedAlerts: string[];
@@ -30,6 +32,7 @@ const layoutReducer = (
     | IOpenFolderAction
     | IOpenAlertAction
     | ICloseAlertAction
+    | ISetActiveWindowAction
 ) => {
   switch (action.type) {
     case ActionTypes.OPEN_START_MENU:
@@ -41,23 +44,34 @@ const layoutReducer = (
       if (state.openedFolders.includes(action.name)) return state;
       return {
         ...state,
-        openedFolders: state.openedFolders.concat([action.name])
+        openedFolders: state.openedFolders.concat([action.name]),
+        numberOfOpenedWindows: state.numberOfOpenedWindows + 1,
+        activeWindowName: action.name
       };
     case ActionTypes.CLOSE_FOLDER:
       return {
         ...state,
-        openedFolders: state.openedFolders.filter(name => name !== action.name)
+        openedFolders: state.openedFolders.filter(name => name !== action.name),
+        numberOfOpenedWindows: state.numberOfOpenedWindows - 1
       };
     case ActionTypes.OPEN_ALERT:
       if (state.openedAlerts.includes(action.name)) return state;
       return {
         ...state,
-        openedAlerts: state.openedAlerts.concat([action.name])
+        openedAlerts: state.openedAlerts.concat([action.name]),
+        numberOfOpenedWindows: state.numberOfOpenedWindows + 1,
+        activeWindowName: action.name
       };
     case ActionTypes.CLOSE_ALERT:
       return {
         ...state,
-        openedAlerts: state.openedAlerts.filter(name => name !== action.name)
+        openedAlerts: state.openedAlerts.filter(name => name !== action.name),
+        numberOfOpenedWindows: state.numberOfOpenedWindows - 1
+      };
+    case ActionTypes.SET_ACTIVE_WINDOW:
+      return {
+        ...state,
+        activeWindowName: action.name
       };
 
     default:

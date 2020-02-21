@@ -9,11 +9,18 @@ interface PropsFolderWindow {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children?: ReactNode;
   title: string | ReactNode;
+  name: string;
 }
 
-const $FolderWindow: FC<PropsFolderWindow> = ({ onClick, children, title }) => {
+const $FolderWindow: FC<PropsFolderWindow> = ({
+  onClick,
+  children,
+  title,
+  name
+}) => {
   return (
     <Window
+      name={name}
       showMenu={true}
       onClick={onClick}
       iconPath={folderIcon}
