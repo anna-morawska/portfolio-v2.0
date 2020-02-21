@@ -1,7 +1,7 @@
 import {
   IOpenStartMenuAction,
   ICloseFolderAction,
-  IOpenFolderAction,
+  IOpenWindowAction,
   IOpenAlertAction,
   ICloseAlertAction,
   ISetActiveWindowAction
@@ -12,7 +12,7 @@ const initialState = {
   activeWindowName: "",
   numberOfOpenedWindows: 0,
   isStartMenuOpen: false,
-  openedFolders: [],
+  openedWindows: [],
   openedAlerts: []
 };
 
@@ -20,7 +20,7 @@ export interface ILayoutState {
   activeWindowName: string;
   numberOfOpenedWindows: number;
   isStartMenuOpen: boolean;
-  openedFolders: string[];
+  openedWindows: string[];
   openedAlerts: string[];
 }
 
@@ -29,7 +29,7 @@ const layoutReducer = (
   action:
     | IOpenStartMenuAction
     | ICloseFolderAction
-    | IOpenFolderAction
+    | IOpenWindowAction
     | IOpenAlertAction
     | ICloseAlertAction
     | ISetActiveWindowAction
@@ -40,18 +40,18 @@ const layoutReducer = (
         ...state,
         isStartMenuOpen: action.payload
       };
-    case ActionTypes.OPEN_FOLDER:
-      if (state.openedFolders.includes(action.name)) return state;
+    case ActionTypes.OPEN_WINDOW:
+      if (state.openedWindows.includes(action.name)) return state;
       return {
         ...state,
-        openedFolders: state.openedFolders.concat([action.name]),
+        openedWindows: state.openedWindows.concat([action.name]),
         numberOfOpenedWindows: state.numberOfOpenedWindows + 1,
         activeWindowName: action.name
       };
-    case ActionTypes.CLOSE_FOLDER:
+    case ActionTypes.CLOSE_WINDOW:
       return {
         ...state,
-        openedFolders: state.openedFolders.filter(name => name !== action.name),
+        openedWindows: state.openedWindows.filter(name => name !== action.name),
         numberOfOpenedWindows: state.numberOfOpenedWindows - 1
       };
     case ActionTypes.OPEN_ALERT:

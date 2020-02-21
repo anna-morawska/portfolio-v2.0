@@ -28,7 +28,7 @@ function withDraggable<T>(WrappedComponent: FC<T>) {
       <Draggable
         defaultPosition={defaultPosition}
         bounds="parent"
-        cancel=".react-resizable-handle"
+        cancel="input, textarea, .react-resizable-handle"
       >
         <div onClick={onClickHandler} style={{ zIndex: isActive ? 10 : 1 }}>
           <WrappedComponent {...props} />

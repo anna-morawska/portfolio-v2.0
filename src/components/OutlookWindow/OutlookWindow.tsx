@@ -1,15 +1,20 @@
 import React, { FC } from "react";
+
 import { Window, translate } from "../";
-import styles from "./OutlookWindow.module.scss";
+import { withResizable } from "../../hoc/withResizable";
+import { withDraggable } from "../../hoc/withDraggable";
+
 import emailIcon from "../../assets/newEmail.png";
 import outlookIcon from "../../assets/outlook.png";
+
+import styles from "./OutlookWindow.module.scss";
 
 interface PropsOutlookWindow {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   name: string;
 }
 
-const OutlookWindow: FC<PropsOutlookWindow> = ({ onClick, name }) => {
+const $OutlookWindow: FC<PropsOutlookWindow> = ({ onClick, name }) => {
   return (
     <Window
       name={name}
@@ -44,5 +49,9 @@ const OutlookWindow: FC<PropsOutlookWindow> = ({ onClick, name }) => {
     </Window>
   );
 };
+
+const OutlookWindow = withDraggable<PropsOutlookWindow>(
+  withResizable<PropsOutlookWindow>($OutlookWindow)
+);
 
 export { OutlookWindow };

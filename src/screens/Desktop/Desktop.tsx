@@ -2,11 +2,12 @@ import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  openFolder,
+  openWindow,
   closeAlert,
-  closeFolder
+  closeWindow
 } from "../../store/actions/layout";
 import { IStore } from "../../store/reducers/rootReducer";
+import { windowTypes } from "../../components/StartMenu/StartMenuItemsList";
 
 import {
   File,
@@ -14,7 +15,9 @@ import {
   Layout,
   Alert,
   translate,
-  FolderWindow
+  FolderWindow,
+  OutlookWindow,
+  Terminal
 } from "../../components";
 
 import styles from "./Desktop.module.scss";
@@ -23,10 +26,10 @@ const Desktop: React.FC = () => {
   const dispatch = useDispatch();
   const repos = useSelector((state: IStore) => state.repos);
   const alerts = useSelector((state: IStore) => state.layout.openedAlerts);
-  const folders = useSelector((state: IStore) => state.layout.openedFolders);
+  const windows = useSelector((state: IStore) => state.layout.openedWindows);
 
   const onClickFolderHandler = (name: string, close: boolean = false) => () => {
-    close ? dispatch(closeFolder(name)) : dispatch(openFolder(name));
+    close ? dispatch(closeWindow(name)) : dispatch(openWindow(name));
   };
 
   const onClickAlertHandler = (name: string) => () => {
@@ -36,14 +39,33 @@ const Desktop: React.FC = () => {
   return (
     <Layout>
       <div className={styles.icons}>
-        {folders.map(folderName => (
-          <FolderWindow
-            name={folderName}
-            key={folderName}
-            title={folderName}
-            onClick={onClickFolderHandler(folderName, true)}
-          />
-        ))}
+        {windows.map(windowName => {
+          if (windowName === windowTypes.OUTLOOK) {
+            return (
+              <OutlookWindow
+                name={windowName}
+                key={windowName}
+                onClick={onClickFolderHandler(windowName, true)}
+              />
+            );
+          } else if (windowName === windowTypes.TERMINAL) {
+            return (
+              <Terminal
+                name={windowName}
+                key={windowName}
+                onClick={onClickFolderHandler(windowName, true)}
+              />
+            );
+          }
+          return (
+            <FolderWindow
+              name={windowName}
+              key={windowName}
+              title={windowName}
+              onClick={onClickFolderHandler(windowName, true)}
+            />
+          );
+        })}
         {alerts.map(alertName => (
           <Alert
             name={alertName}

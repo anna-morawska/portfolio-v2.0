@@ -1,0 +1,19 @@
+@import "../../styles/variables.scss";
+
+.main {
+  padding: 1rem;
+  background-color: $black;
+  height: calc(100% - 2.5rem);
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: "Cutive Mono", monospace;
+}
+
+.main div {
+  display: initial;
+}
+
+.main > span {
+  color: greenyellow;
+  padding-right: 1rem;
+}

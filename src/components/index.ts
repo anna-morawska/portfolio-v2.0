@@ -9,6 +9,7 @@ export * from "./OutlookWindow/OutlookWindow";
 export * from "./StartMenu/StartMenu";
 export * from "./Startbar/Startbar";
 export * from "./StartMenuItem/StartMenuItem";
+export * from "./Terminal/Terminal";
 export * from "./Translate/Translate";
 export * from "./Window/Window";
 export * from "./WindowTitle/WindowTitle";

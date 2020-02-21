@@ -5,13 +5,13 @@ export interface IOpenStartMenuAction {
   payload: boolean;
 }
 
-export interface IOpenFolderAction {
-  type: ActionTypes.OPEN_FOLDER;
+export interface IOpenWindowAction {
+  type: ActionTypes.OPEN_WINDOW;
   name: string;
 }
 
 export interface ICloseFolderAction {
-  type: ActionTypes.CLOSE_FOLDER;
+  type: ActionTypes.CLOSE_WINDOW;
   name: string;
 }
 
@@ -36,15 +36,15 @@ export const openStartMenuAction = (open: boolean) =>
     payload: open
   };
 
-export const openFolder = (name: string) =>
-  <IOpenFolderAction>{
-    type: ActionTypes.OPEN_FOLDER,
+export const openWindow = (name: string) =>
+  <IOpenWindowAction>{
+    type: ActionTypes.OPEN_WINDOW,
     name
   };
 
-export const closeFolder = (name: string) =>
+export const closeWindow = (name: string) =>
   <ICloseFolderAction>{
-    type: ActionTypes.CLOSE_FOLDER,
+    type: ActionTypes.CLOSE_WINDOW,
     name
   };
 

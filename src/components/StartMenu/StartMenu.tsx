@@ -2,7 +2,10 @@ import React, { FC, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { translate, StartMenuItem } from "../";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import { IOpenAlertAction } from "../../store/actions/layout";
+import {
+  IOpenAlertAction,
+  IOpenWindowAction
+} from "../../store/actions/layout";
 
 import { startMenuItemsList } from "./StartMenuItemsList";
 
@@ -36,7 +39,9 @@ const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOnClickOutside({ ref: wrapperRef, onClickOutsideHandler });
 
-  const onClickHandler = (action: IOpenAlertAction) => () => {
+  const onClickHandler = (
+    action: IOpenAlertAction | IOpenWindowAction
+  ) => () => {
     dispatch(action);
   };
 

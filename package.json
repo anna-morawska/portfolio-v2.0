@@ -12,7 +12,8 @@
     "react-resizable": "^1.10.1",
     "react-scripts": "3.3.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "typeit-react": "0.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

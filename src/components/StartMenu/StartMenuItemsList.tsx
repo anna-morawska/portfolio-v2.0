@@ -1,4 +1,9 @@
-import { openAlert, IOpenAlertAction } from "../../store/actions/layout";
+import {
+  openAlert,
+  IOpenAlertAction,
+  IOpenWindowAction,
+  openWindow
+} from "../../store/actions/layout";
 
 import { ReactNode } from "react";
 import outlookIcon from "../../assets/outlook.png";
@@ -17,57 +22,68 @@ enum StartMenuItemSide {
 
 interface PropsStartMenuItem {
   iconPath: string;
-  action: IOpenAlertAction;
+  action: IOpenAlertAction | IOpenWindowAction;
   title: string | ReactNode;
   side?: StartMenuItemSide;
 }
 
+export enum windowTypes {
+  OUTLOOK = "Microsoft Outlook",
+  INTERNET_EXPLORER = "Internet Explorer",
+  PAINT = "Paint",
+  GIT_BASH = "Git Bash",
+  VSC = "Visual Studio Code",
+  PHOTOSHOP = "Photoshop",
+  CHROME = "Google Chrome",
+  TERMINAL = "Terminal"
+}
+
 const startMenuItemsList: PropsStartMenuItem[] = [
   {
-    title: "Microsoft Outlook",
-    action: openAlert("Microsoft Outlook"),
+    title: windowTypes.OUTLOOK,
+    action: openWindow(windowTypes.OUTLOOK),
     iconPath: outlookIcon,
     side: StartMenuItemSide.LEFT
   },
   {
-    title: "Internet Explorer",
-    action: openAlert("Internet Explorer"),
+    title: windowTypes.INTERNET_EXPLORER,
+    action: openAlert(windowTypes.INTERNET_EXPLORER),
     iconPath: explorerIcon,
     side: StartMenuItemSide.LEFT
   },
   {
-    title: "Paint",
-    action: openAlert("Paint"),
+    title: windowTypes.PAINT,
+    action: openAlert(windowTypes.PAINT),
     iconPath: paintIcon,
     side: StartMenuItemSide.LEFT
   },
   {
-    title: "Git Bash",
-    action: openAlert("Git Bash"),
+    title: windowTypes.GIT_BASH,
+    action: openAlert(windowTypes.GIT_BASH),
     iconPath: gitBashIcon,
     side: StartMenuItemSide.RIGHT
   },
   {
-    title: "Visual Studio Code",
-    action: openAlert("Visual Studio Code"),
+    title: windowTypes.VSC,
+    action: openAlert(windowTypes.VSC),
     iconPath: vsCodeIcon,
     side: StartMenuItemSide.RIGHT
   },
   {
-    title: "Photoshop",
-    action: openAlert("Photoshop"),
+    title: windowTypes.PHOTOSHOP,
+    action: openAlert(windowTypes.PHOTOSHOP),
     iconPath: photoshopIcon,
     side: StartMenuItemSide.RIGHT
   },
   {
-    title: "Google Chrome",
-    action: openAlert("Google Chrome"),
+    title: windowTypes.CHROME,
+    action: openAlert(windowTypes.CHROME),
     iconPath: chromeIcon,
     side: StartMenuItemSide.RIGHT
   },
   {
-    title: "Terminal",
-    action: openAlert("Terminal"),
+    title: windowTypes.TERMINAL,
+    action: openWindow(windowTypes.TERMINAL),
     iconPath: consoleIcon,
     side: StartMenuItemSide.RIGHT
   }
