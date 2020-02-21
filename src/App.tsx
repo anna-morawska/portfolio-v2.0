@@ -6,12 +6,13 @@ import messages from "./i18n";
 import { fetchRepos } from "./store/actions/repos";
 import { IStore } from "./store/reducers/rootReducer";
 
-import { Loading, Desktop } from "./screens";
+import { Loading, Desktop, Error } from "./screens";
 
 import "./styles/global.scss";
 
 const App: React.FC = () => {
   const loading = useSelector((state: IStore) => state.loading);
+  const error = useSelector((state: IStore) => state.error);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const App: React.FC = () => {
 
   return (
     <IntlProvider locale="en" messages={messages["en"]}>
-      {loading ? <Loading /> : <Desktop />}
+      {error ? <Error /> : loading ? <Loading /> : <Desktop />}
     </IntlProvider>
   );
 };

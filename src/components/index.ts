@@ -3,6 +3,7 @@ export * from "./Clock/Clock";
 export * from "./File/File";
 export * from "./FolderWindow/FolderWindow";
 export * from "./IrfanViewWindow/IrfanViewWindow";
+export * from "./Layout/Layout";
 export * from "./NotepadWindow/NotepadWindow";
 export * from "./OutlookWindow/OutlookWindow";
 export * from "./StartMenu/StartMenu";

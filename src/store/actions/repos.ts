@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { api, parallel } from "../../utils/utils";
 import { ActionTypes } from "../types";
+import { errorAction, IErrorAction } from "./error";
 import { loadingAction, ILoadingAction } from "./loading";
 
 const URL = "https://api.github.com/users/anna-morawska/repos";
@@ -24,6 +25,8 @@ export const fetchRepos = () => async (dispatch: Dispatch) => {
     // keep loading for at least n number of ms to show loading screeen
     const response = await parallel<IRepo[]>(api<IRepo[]>(URL), 3000);
 
+    throw new Error("askldnalksdn");
+
     const payload = response
       .filter(({ fork }) => fork === false)
       .map(({ id, name, html_url, fork }) => ({
@@ -40,6 +43,6 @@ export const fetchRepos = () => async (dispatch: Dispatch) => {
 
     dispatch<ILoadingAction>(loadingAction(false));
   } catch (err) {
-    dispatch<ILoadingAction>(loadingAction(false));
+    dispatch<IErrorAction>(errorAction(true));
   }
 };

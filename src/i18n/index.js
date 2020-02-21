@@ -6,6 +6,8 @@ export default {
     "alert.text":
       "Błąd. Aplikacja nie została właściwie uruchomiona. Spróbuj na swoim lokalnym komputerze...",
     "alert.title": "Windows Alert",
+    "alert.error": "Error",
+    "alert.error.text": "Unexpected Error. Please Investigate",
 
     "windowMenu.file": "Plik",
     "windowMenu.edit": "Edycja",
