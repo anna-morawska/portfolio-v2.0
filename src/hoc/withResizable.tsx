@@ -61,8 +61,7 @@ function withResizable<T>(WrappedComponent: FC<T>) {
         <div
           style={{
             width: width + "px",
-            height: height + "px",
-            position: "absolute"
+            height: height + "px"
           }}
           ref={openedWindow}
         >
