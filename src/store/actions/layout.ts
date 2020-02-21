@@ -8,12 +8,11 @@ export interface IOpenStartMenuAction {
 export interface IOpenFolderAction {
   type: ActionTypes.OPEN_FOLDER;
   name: string;
-  id: number;
 }
 
 export interface ICloseFolderAction {
   type: ActionTypes.CLOSE_FOLDER;
-  id: number;
+  name: string;
 }
 
 export interface IOpenAlertAction {
@@ -32,17 +31,16 @@ export const openStartMenuAction = (open: boolean) =>
     payload: open
   };
 
-export const openFolder = (name: string, id: number) =>
+export const openFolder = (name: string) =>
   <IOpenFolderAction>{
     type: ActionTypes.OPEN_FOLDER,
-    name,
-    id
+    name
   };
 
-export const closeFolder = (id: number) =>
+export const closeFolder = (name: string) =>
   <ICloseFolderAction>{
     type: ActionTypes.CLOSE_FOLDER,
-    id
+    name
   };
 
 export const openAlert = (name: string) =>

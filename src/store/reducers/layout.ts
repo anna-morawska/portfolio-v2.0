@@ -18,7 +18,7 @@ const initialState = {
 
 export interface ILayoutState {
   isStartMenuOpen: boolean;
-  openedFolders: number[];
+  openedFolders: string[];
   openedAlerts: string[];
 }
 
@@ -38,14 +38,15 @@ const layoutReducer = (
         isStartMenuOpen: action.payload
       };
     case ActionTypes.OPEN_FOLDER:
+      if (state.openedFolders.includes(action.name)) return state;
       return {
         ...state,
-        openedFolders: state.openedFolders.concat([action.id])
+        openedFolders: state.openedFolders.concat([action.name])
       };
     case ActionTypes.CLOSE_FOLDER:
       return {
         ...state,
-        openedFolders: state.openedFolders.filter(id => id !== action.id)
+        openedFolders: state.openedFolders.filter(name => name !== action.name)
       };
     case ActionTypes.OPEN_ALERT:
       if (state.openedAlerts.includes(action.name)) return state;
@@ -56,7 +57,7 @@ const layoutReducer = (
     case ActionTypes.CLOSE_ALERT:
       return {
         ...state,
-        openedAlerts: state.openedAlerts.filter(id => id !== action.name)
+        openedAlerts: state.openedAlerts.filter(name => name !== action.name)
       };
 
     default:
