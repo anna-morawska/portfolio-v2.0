@@ -4,7 +4,7 @@ import Draggable from "react-draggable";
 function withDraggable<T>(WrappedComponent: FC<T>) {
   return function(props: T) {
     return (
-      <Draggable cancel=".react-resizable-handle">
+      <Draggable bounds="parent" cancel=".react-resizable-handle">
         <div>
           <WrappedComponent {...props} />
         </div>

@@ -59,7 +59,11 @@ function withResizable<T>(WrappedComponent: FC<T>) {
         maxConstraints={[availableWidth, availableHeight]}
       >
         <div
-          style={{ width: width + "px", height: height + "px" }}
+          style={{
+            width: width + "px",
+            height: height + "px",
+            position: "absolute"
+          }}
           ref={openedWindow}
         >
           <WrappedComponent {...props} />
