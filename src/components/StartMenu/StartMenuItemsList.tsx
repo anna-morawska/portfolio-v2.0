@@ -1,3 +1,5 @@
+import { openAlert, IOpenAlertAction } from "../../store/actions/layout";
+
 import { ReactNode } from "react";
 import outlookIcon from "../../assets/outlook.png";
 import explorerIcon from "../../assets/explorer.png";
@@ -15,7 +17,7 @@ enum StartMenuItemSide {
 
 interface PropsStartMenuItem {
   iconPath: string;
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  action: IOpenAlertAction;
   title: string | ReactNode;
   side?: StartMenuItemSide;
 }
@@ -23,49 +25,49 @@ interface PropsStartMenuItem {
 const startMenuItemsList: PropsStartMenuItem[] = [
   {
     title: "Microsoft Outlook",
-    onClick: () => console.log("placeholder"),
+    action: openAlert("Microsoft Outlook"),
     iconPath: outlookIcon,
     side: StartMenuItemSide.LEFT
   },
   {
     title: "Internet Explorer",
-    onClick: () => console.log("placeholder"),
+    action: openAlert("Internet Explorer"),
     iconPath: explorerIcon,
     side: StartMenuItemSide.LEFT
   },
   {
     title: "Paint",
-    onClick: () => console.log("placeholder"),
+    action: openAlert("Paint"),
     iconPath: paintIcon,
     side: StartMenuItemSide.LEFT
   },
   {
     title: "Git Bash",
-    onClick: () => console.log("placeholder"),
+    action: openAlert("Git Bash"),
     iconPath: gitBashIcon,
     side: StartMenuItemSide.RIGHT
   },
   {
     title: "Visual Studio Code",
-    onClick: () => console.log("placeholder"),
+    action: openAlert("Visual Studio Code"),
     iconPath: vsCodeIcon,
     side: StartMenuItemSide.RIGHT
   },
   {
     title: "Photoshop",
-    onClick: () => console.log("placeholder"),
+    action: openAlert("Photoshop"),
     iconPath: photoshopIcon,
     side: StartMenuItemSide.RIGHT
   },
   {
     title: "Google Chrome",
-    onClick: () => console.log("placeholder"),
+    action: openAlert("Google Chrome"),
     iconPath: chromeIcon,
     side: StartMenuItemSide.RIGHT
   },
   {
     title: "Terminal",
-    onClick: () => console.log("placeholder"),
+    action: openAlert("Terminal"),
     iconPath: consoleIcon,
     side: StartMenuItemSide.RIGHT
   }

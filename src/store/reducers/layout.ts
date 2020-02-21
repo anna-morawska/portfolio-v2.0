@@ -1,13 +1,16 @@
 import {
   IOpenStartMenuAction,
   ICloseFolderAction,
-  IOpenFolderAction
+  IOpenFolderAction,
+  IOpenAlertAction,
+  ICloseAlertAction
 } from "../actions/layout";
 import { ActionTypes } from "../types";
 
 const initialState = {
   isStartMenuOpen: false,
-  openedFolders: []
+  openedFolders: [],
+  openedAlerts: []
 };
 
 //   activeWindowId: "uuid",
@@ -16,11 +19,17 @@ const initialState = {
 export interface ILayoutState {
   isStartMenuOpen: boolean;
   openedFolders: number[];
+  openedAlerts: string[];
 }
 
 const layoutReducer = (
   state: ILayoutState = initialState,
-  action: IOpenStartMenuAction | ICloseFolderAction | IOpenFolderAction
+  action:
+    | IOpenStartMenuAction
+    | ICloseFolderAction
+    | IOpenFolderAction
+    | IOpenAlertAction
+    | ICloseAlertAction
 ) => {
   switch (action.type) {
     case ActionTypes.OPEN_START_MENU:
@@ -37,6 +46,17 @@ const layoutReducer = (
       return {
         ...state,
         openedFolders: state.openedFolders.filter(id => id !== action.id)
+      };
+    case ActionTypes.OPEN_ALERT:
+      if (state.openedAlerts.includes(action.name)) return state;
+      return {
+        ...state,
+        openedAlerts: state.openedAlerts.concat([action.name])
+      };
+    case ActionTypes.CLOSE_ALERT:
+      return {
+        ...state,
+        openedAlerts: state.openedAlerts.filter(id => id !== action.name)
       };
 
     default:

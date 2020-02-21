@@ -1,12 +1,18 @@
 import React, { FC, useRef } from "react";
-import styles from "./StartMenu.module.scss";
+import { useDispatch } from "react-redux";
 import { translate, StartMenuItem } from "../";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+import { IOpenAlertAction } from "../../store/actions/layout";
 
 import { startMenuItemsList } from "./StartMenuItemsList";
 
 import rightArrowIcon from "../../assets/right.png";
 import userPhotoIcon from "../../assets/user.jpg";
+
+import styles from "./StartMenu.module.scss";
+
+// conect with store
+//
 
 interface IStartMenu {
   onClickOutsideHandler: () => void;
@@ -26,8 +32,13 @@ const rightSideMenu = startMenuItemsList.filter(
 );
 
 const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
+  const dispatch = useDispatch();
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOnClickOutside({ ref: wrapperRef, onClickOutsideHandler });
+
+  const onClickHandler = (action: IOpenAlertAction) => () => {
+    dispatch(action);
+  };
 
   return (
     <div ref={wrapperRef} className={styles.startMenu}>
@@ -41,7 +52,7 @@ const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
             <StartMenuItem
               key={item.iconPath}
               iconPath={item.iconPath}
-              onClick={item.onClick}
+              onClick={onClickHandler(item.action)}
               title={item.title}
             />
           ))}
@@ -55,7 +66,7 @@ const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
             <StartMenuItem
               key={item.iconPath}
               iconPath={item.iconPath}
-              onClick={item.onClick}
+              onClick={onClickHandler(item.action)}
               title={item.title}
             />
           ))}

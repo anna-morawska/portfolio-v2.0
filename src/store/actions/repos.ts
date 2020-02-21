@@ -25,8 +25,6 @@ export const fetchRepos = () => async (dispatch: Dispatch) => {
     // keep loading for at least n number of ms to show loading screeen
     const response = await parallel<IRepo[]>(api<IRepo[]>(URL), 3000);
 
-    throw new Error("askldnalksdn");
-
     const payload = response
       .filter(({ fork }) => fork === false)
       .map(({ id, name, html_url, fork }) => ({
