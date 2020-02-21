@@ -1,0 +1,15 @@
+.desktop {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.icons {
+  height: calc(100% - 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}

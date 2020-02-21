@@ -1,0 +1,34 @@
+@import "../../styles/variables.scss";
+
+.windowTitle {
+  width: 100%;
+  height: 2.5rem;
+  background-color: $windows-blue;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-bottom: 1px solid $windows-blue-dark;
+}
+
+.windowTitle span {
+  color: $white;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.windowTitle img {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 0.5rem;
+}
+
+.windowTitle button {
+  margin-left: auto;
+  background-color: $windows-red;
+  padding: 0 1rem;
+  border-radius: 3px;
+  border: 1px solid $white;
+  color: $white;
+  font-weight: 600;
+  cursor: pointer;
+}

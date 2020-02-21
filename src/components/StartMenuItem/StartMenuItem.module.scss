@@ -1,0 +1,27 @@
+.startMenuItem {
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.startMenuItem img {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.8rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .startMenuItem {
+    padding: 1rem 5px;
+  }
+
+  .startMenuItem img {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}

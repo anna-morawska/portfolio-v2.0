@@ -1,0 +1,23 @@
+.file {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  align-items: center;
+}
+
+.icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.fileName {
+  margin-top: 0.3rem;
+  max-width: 6.5rem;
+  text-align: center;
+  word-wrap: break-word;
+  display: block;
+  background: #22549a;
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+}
