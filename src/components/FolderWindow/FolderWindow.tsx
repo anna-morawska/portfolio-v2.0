@@ -1,5 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { Window } from "../";
+import { withResizable } from "../../hoc/withResizable";
+import { withDraggable } from "../../hoc/withDraggable";
 import folderIcon from "../../assets/folder.png";
 import styles from "./FolderWindow.module.scss";
 
@@ -9,7 +11,7 @@ interface PropsFolderWindow {
   title: string | ReactNode;
 }
 
-const FolderWindow: FC<PropsFolderWindow> = ({ onClick, children, title }) => {
+const $FolderWindow: FC<PropsFolderWindow> = ({ onClick, children, title }) => {
   return (
     <Window
       showMenu={true}
@@ -22,4 +24,8 @@ const FolderWindow: FC<PropsFolderWindow> = ({ onClick, children, title }) => {
   );
 };
 
-export { FolderWindow };
+const FolderWindow = withDraggable<PropsFolderWindow>(
+  withResizable<PropsFolderWindow>($FolderWindow)
+);
+
+export { $FolderWindow, FolderWindow };
