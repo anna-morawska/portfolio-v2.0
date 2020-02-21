@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useRef, Context } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { openStartMenuAction } from "../../store/actions/layout";
@@ -9,12 +9,15 @@ import { Startbar, StartMenu } from "../../components";
 
 import styles from "./Layout.module.scss";
 
+export const ClickOutsideContext: Context<any> = createContext(null);
+
 const Layout: React.FC = ({ children }) => {
   const dispatch = useDispatch();
   const language = useSelector((state: IStore) => state.language);
   const isStartMenuOpen = useSelector(
     (state: IStore) => state.layout.isStartMenuOpen
   );
+  const startButtonRef = useRef(null);
 
   const changeLanguageHandler = () => {
     const changeToLanguage =
@@ -23,7 +26,9 @@ const Layout: React.FC = ({ children }) => {
   };
 
   const toggleStartMenu = () => {
-    dispatch(openStartMenuAction(!isStartMenuOpen));
+    if (!isStartMenuOpen) {
+      dispatch(openStartMenuAction(!isStartMenuOpen));
+    }
   };
 
   const closeStartMenu = () => {
@@ -31,15 +36,19 @@ const Layout: React.FC = ({ children }) => {
   };
 
   return (
-    <div className={styles.desktop}>
-      <Startbar
-        language={language}
-        changeLanguageHandler={changeLanguageHandler}
-        toggleStartMenu={toggleStartMenu}
-      />
-      {isStartMenuOpen && <StartMenu onClickOutsideHandler={closeStartMenu} />}
-      {children}
-    </div>
+    <ClickOutsideContext.Provider value={startButtonRef}>
+      <div className={styles.desktop}>
+        <Startbar
+          language={language}
+          changeLanguageHandler={changeLanguageHandler}
+          toggleStartMenu={toggleStartMenu}
+        />
+        {isStartMenuOpen && (
+          <StartMenu onClickOutsideHandler={closeStartMenu} />
+        )}
+        {children}
+      </div>
+    </ClickOutsideContext.Provider>
   );
 };
 

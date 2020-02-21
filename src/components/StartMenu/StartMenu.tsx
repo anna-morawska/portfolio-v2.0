@@ -1,6 +1,6 @@
-import React, { FC, useRef } from "react";
+import React, { FC, useRef, useContext } from "react";
 import { useDispatch } from "react-redux";
-import { translate, StartMenuItem } from "../";
+import { translate, StartMenuItem, ClickOutsideContext } from "../";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import {
   IOpenAlertAction,
@@ -13,9 +13,6 @@ import rightArrowIcon from "../../assets/right.png";
 import userPhotoIcon from "../../assets/user.jpg";
 
 import styles from "./StartMenu.module.scss";
-
-// conect with store
-//
 
 interface IStartMenu {
   onClickOutsideHandler: () => void;
@@ -37,7 +34,12 @@ const rightSideMenu = startMenuItemsList.filter(
 const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
   const dispatch = useDispatch();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside({ ref: wrapperRef, onClickOutsideHandler });
+  const startButtonRef = useContext(ClickOutsideContext);
+  useOnClickOutside({
+    ref: wrapperRef,
+    onClickOutsideHandler,
+    ignoreRef: startButtonRef
+  });
 
   const onClickHandler = (
     action: IOpenAlertAction | IOpenWindowAction

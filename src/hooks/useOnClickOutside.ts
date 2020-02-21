@@ -3,14 +3,21 @@ import { useEffect, MutableRefObject } from "react";
 interface IOnClickOutside {
   ref: MutableRefObject<any>;
   onClickOutsideHandler: () => void;
+  ignoreRef: MutableRefObject<any>;
 }
 
 const useOnClickOutside = ({
   ref,
-  onClickOutsideHandler
+  onClickOutsideHandler,
+  ignoreRef
 }: IOnClickOutside): void => {
   const handleClickOutside = (event: Event) => {
-    if (ref && ref.current && !ref.current.contains(event.target)) {
+    if (
+      ref &&
+      ref.current &&
+      !ref.current.contains(event.target) &&
+      !ignoreRef.current.contains(event.target)
+    ) {
       onClickOutsideHandler();
     }
   };
@@ -20,7 +27,7 @@ const useOnClickOutside = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  });
+  }, []);
 };
 
 export { useOnClickOutside };
