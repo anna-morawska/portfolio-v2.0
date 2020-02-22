@@ -4,7 +4,9 @@ import {
   IOpenWindowAction,
   IOpenAlertAction,
   ICloseAlertAction,
-  ISetActiveWindowAction
+  ISetActiveWindowAction,
+  IOpenReadmeAction,
+  IOpenImageAction
 } from "../actions/layout";
 import { ActionTypes } from "../types";
 
@@ -13,7 +15,9 @@ const initialState = {
   numberOfOpenedWindows: 0,
   isStartMenuOpen: false,
   openedWindows: [],
-  openedAlerts: []
+  openedAlerts: [],
+  readmeContent: "",
+  imagePreviewContent: ""
 };
 
 export interface ILayoutState {
@@ -22,6 +26,8 @@ export interface ILayoutState {
   isStartMenuOpen: boolean;
   openedWindows: string[];
   openedAlerts: string[];
+  readmeContent?: string;
+  imagePreviewContent?: string;
 }
 
 const layoutReducer = (
@@ -33,6 +39,8 @@ const layoutReducer = (
     | IOpenAlertAction
     | ICloseAlertAction
     | ISetActiveWindowAction
+    | IOpenReadmeAction
+    | IOpenImageAction
 ) => {
   switch (action.type) {
     case ActionTypes.OPEN_START_MENU:
@@ -73,7 +81,16 @@ const layoutReducer = (
         ...state,
         activeWindowName: action.name
       };
-
+    case ActionTypes.OPEN_README:
+      return {
+        ...state,
+        readmeContent: action.content
+      };
+    case ActionTypes.OPEN_IMAGE:
+      return {
+        ...state,
+        imagePreviewContent: action.imageUrl
+      };
     default:
       return state;
   }

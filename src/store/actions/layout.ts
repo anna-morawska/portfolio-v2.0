@@ -1,4 +1,5 @@
 import { ActionTypes } from "../types";
+import { Dispatch } from "redux";
 
 export interface IOpenStartMenuAction {
   type: ActionTypes.OPEN_START_MENU;
@@ -30,10 +31,36 @@ export interface ISetActiveWindowAction {
   name: string;
 }
 
+export interface IOpenReadmeAction {
+  type: ActionTypes.OPEN_README;
+  name: string;
+  content: string;
+}
+
+export interface IOpenImageAction {
+  type: ActionTypes.OPEN_IMAGE;
+  name: string;
+  imageUrl: string;
+}
+
 export const openStartMenuAction = (open: boolean) =>
   <IOpenStartMenuAction>{
     type: ActionTypes.OPEN_START_MENU,
     payload: open
+  };
+
+export const openReadmeAction = (name: string, content: string) =>
+  <IOpenReadmeAction>{
+    type: ActionTypes.OPEN_README,
+    name,
+    content
+  };
+
+export const openImageAction = (name: string, imageUrl: string) =>
+  <IOpenImageAction>{
+    type: ActionTypes.OPEN_IMAGE,
+    name,
+    imageUrl
   };
 
 export const openWindow = (name: string) =>

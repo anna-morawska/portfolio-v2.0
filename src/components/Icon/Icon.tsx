@@ -11,6 +11,8 @@ import consoleIcon from "../../assets/console.png";
 import paintIcon from "../../assets/paint.png";
 import folderIcon from "../../assets/folder.png";
 import windowsIcon from "../../assets/windows_icon.png";
+import notepadIcon from "../../assets/note.png";
+import irfanViewIcon from "../../assets/IrfanView.png";
 
 interface IconProps {
   name: string;
@@ -36,6 +38,10 @@ const getIconPath = (name: string) => {
       return paintIcon;
     case windowTypes.ALERT:
       return windowsIcon;
+    case windowTypes.NOTEPAD:
+      return notepadIcon;
+    case windowTypes.IRFAN_VIEW:
+      return irfanViewIcon;
     default:
       return folderIcon;
   }

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Window } from "../";
-import irfanViewIcon from "../../assets/IrfanView.png";
+import { withResizable } from "../../hoc/withResizable";
+import { withDraggable } from "../../hoc/withDraggable";
 
 import styles from "./IrfanViewWindow.module.scss";
 
@@ -10,7 +11,7 @@ interface PropsIrfanViewWindow {
   name: string;
 }
 
-const IrfanViewWindow: FC<PropsIrfanViewWindow> = ({
+const $IrfanViewWindow: FC<PropsIrfanViewWindow> = ({
   imgUrl,
   onClick,
   name
@@ -20,6 +21,10 @@ const IrfanViewWindow: FC<PropsIrfanViewWindow> = ({
       <img src={imgUrl} />
     </div>
   </Window>
+);
+
+const IrfanViewWindow = withDraggable<PropsIrfanViewWindow>(
+  withResizable<PropsIrfanViewWindow>($IrfanViewWindow)
 );
 
 export { IrfanViewWindow };

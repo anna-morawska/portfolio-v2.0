@@ -1,6 +1,8 @@
-.main{
-    width: auto;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.6rem;
-    padding: 1rem;
+.main {
+  width: auto;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.6rem;
+  padding: 1rem;
+  overflow: scroll;
+  height: calc(100% - 4rem);
 }

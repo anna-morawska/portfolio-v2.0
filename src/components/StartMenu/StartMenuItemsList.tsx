@@ -27,7 +27,9 @@ export enum windowTypes {
   PHOTOSHOP = "Photoshop",
   CHROME = "Google Chrome",
   TERMINAL = "Terminal",
-  ALERT = "Alert"
+  ALERT = "Alert",
+  NOTEPAD = "Notepad",
+  IRFAN_VIEW = "IrfanView"
 }
 
 const startMenuItemsList: PropsStartMenuItem[] = [

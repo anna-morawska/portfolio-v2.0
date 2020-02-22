@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
   openWindow,
   closeAlert,
-  closeWindow
+  closeWindow,
+  openReadmeAction,
+  openImageAction
 } from "../../store/actions/layout";
+import { fetchedFolderContent } from "../../store/actions/repos";
 import { IStore } from "../../store/reducers/rootReducer";
 import { windowTypes } from "../../components/StartMenu/StartMenuItemsList";
 
 import {
-  File,
+  DraggableFile,
   IconType,
   Layout,
   Alert,
   translate,
   FolderWindow,
   OutlookWindow,
-  Terminal
+  Terminal,
+  NotepadWindow,
+  IrfanViewWindow
 } from "../../components";
 
 import styles from "./Desktop.module.scss";
@@ -27,14 +32,50 @@ const Desktop: React.FC = () => {
   const repos = useSelector((state: IStore) => state.repos);
   const alerts = useSelector((state: IStore) => state.layout.openedAlerts);
   const windows = useSelector((state: IStore) => state.layout.openedWindows);
+  const readmeContent = useSelector(
+    (state: IStore) => state.layout.readmeContent
+  );
+  const imagePreviewContent = useSelector(
+    (state: IStore) => state.layout.imagePreviewContent
+  );
 
-  const onClickFolderHandler = (name: string, close: boolean = false) => () => {
-    close ? dispatch(closeWindow(name)) : dispatch(openWindow(name));
-  };
+  const onClickAlertHandler = useCallback(
+    (name: string) => () => {
+      dispatch(closeAlert(name));
+    },
+    []
+  );
 
-  const onClickAlertHandler = (name: string) => () => {
-    dispatch(closeAlert(name));
-  };
+  const openReadmeHandler = useCallback(
+    (name: string, content: string) => () => {
+      dispatch(openWindow(windowTypes.NOTEPAD));
+      dispatch(openReadmeAction(name, content));
+    },
+    []
+  );
+
+  const openImageHandler = useCallback(
+    (name: string, imageUrl: string) => () => {
+      dispatch(openWindow(windowTypes.IRFAN_VIEW));
+      dispatch(openImageAction(name, imageUrl));
+    },
+    []
+  );
+
+  const onClickFolderHandler = useCallback(
+    (name: string) => () => {
+      dispatch(fetchedFolderContent(name));
+      dispatch(openWindow(name));
+    },
+    []
+  );
+
+  const onCloseWindowHandler = useCallback(
+    (name: string) => () => {
+      dispatch(closeWindow(name));
+    },
+    []
+  );
 
   return (
     <Layout>
@@ -45,7 +86,7 @@ const Desktop: React.FC = () => {
               <OutlookWindow
                 name={windowName}
                 key={windowName}
-                onClick={onClickFolderHandler(windowName, true)}
+                onClick={onCloseWindowHandler(windowName)}
               />
             );
           } else if (windowName === windowTypes.TERMINAL) {
@@ -53,7 +94,28 @@ const Desktop: React.FC = () => {
               <Terminal
                 name={windowName}
                 key={windowName}
-                onClick={onClickFolderHandler(windowName, true)}
+                onClick={onCloseWindowHandler(windowName)}
+              />
+            );
+          } else if (windowName === windowTypes.NOTEPAD) {
+            return (
+              <NotepadWindow
+                content={readmeContent}
+                name={windowName}
+                key={windowName}
+                onClick={onCloseWindowHandler(windowName)}
+              />
+            );
+          } else if (
+            windowName === windowTypes.IRFAN_VIEW &&
+            imagePreviewContent
+          ) {
+            return (
+              <IrfanViewWindow
+                imgUrl={imagePreviewContent}
+                name={windowName}
+                key={windowName}
+                onClick={onCloseWindowHandler(windowName)}
               />
             );
           }
@@ -62,8 +124,11 @@ const Desktop: React.FC = () => {
               name={windowName}
               key={windowName}
               title={windowName}
-              onClick={onClickFolderHandler(windowName, true)}
-            />
+              content={repos.find(repo => repo.name === windowName)}
+              onClick={onCloseWindowHandler(windowName)}
+              openReadmeHandler={openReadmeHandler}
+              openImageHandler={openImageHandler}
+            ></FolderWindow>
           );
         })}
         {alerts.map(alertName => (
@@ -76,12 +141,12 @@ const Desktop: React.FC = () => {
           />
         ))}
         {repos.map(repo => (
-          <File
+          <DraggableFile
             key={repo.id}
             fileName={repo.name}
             type={IconType.folder}
             onClick={onClickFolderHandler(repo.name)}
-          ></File>
+          ></DraggableFile>
         ))}
       </div>
     </Layout>

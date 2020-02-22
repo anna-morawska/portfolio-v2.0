@@ -1,9 +1,12 @@
-function api<T>(url: string): Promise<T> {
+function api<T>(url: string, type = "JSON"): Promise<T> {
   return fetch(url).then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    return response.json() as Promise<T>;
+    if (type === "JSON") {
+      return response.json() as Promise<T>;
+    }
+    return response.text() as Promise<any>;
   });
 }
 

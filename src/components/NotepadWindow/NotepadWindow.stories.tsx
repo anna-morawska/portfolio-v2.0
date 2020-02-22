@@ -13,7 +13,7 @@ export default {
 export const Main = () => (
   <NotepadWindow
     name="example"
-    text="Landing page created for small accounting office. It is one of my first ever creacted websites."
+    content="Landing page created for small accounting office. It is one of my first ever creacted websites."
     onClick={action("clicked")}
   />
 );

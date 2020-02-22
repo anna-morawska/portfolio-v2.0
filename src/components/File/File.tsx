@@ -11,8 +11,9 @@ import styles from "./File.module.scss";
 
 interface PropsFile {
   fileName: string | ReactNode;
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   type: IconType;
+  href?: string;
 }
 
 enum IconType {
@@ -37,17 +38,25 @@ const getIcon = (type: IconType) => {
   }
 };
 
-const $File: FC<PropsFile> = ({ fileName, type, onClick }) => {
+const File: FC<PropsFile> = ({ fileName, type, onClick, href }) => {
   const icon = useMemo(() => getIcon(type), [type]);
 
+  const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (href) {
+      window.open(href, "_blank");
+      return;
+    }
+    if (onClick) onClick(e);
+  };
+
   return (
-    <div className={styles.file} onDoubleClick={onClick}>
+    <div className={styles.file} onDoubleClick={onClickHandler}>
       <img className={styles.icon} src={icon} draggable="false" />
       <span className={styles.fileName}>{fileName}</span>
     </div>
   );
 };
 
-const File = withDraggable<PropsFile>($File);
+const DraggableFile = withDraggable<PropsFile>(File);
 
-export { File, IconType };
+export { File, DraggableFile, IconType };

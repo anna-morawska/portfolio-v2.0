@@ -30,7 +30,10 @@ function withDraggable<T>(WrappedComponent: FC<T>) {
         bounds="parent"
         cancel="input, textarea, .react-resizable-handle"
       >
-        <div onClick={onClickHandler} style={{ zIndex: isActive ? 10 : 1 }}>
+        <div
+          onClick={onClickHandler}
+          style={{ zIndex: isActive ? 10 : props.name ? 5 : 1 }}
+        >
           <WrappedComponent {...props} />
         </div>
       </Draggable>
