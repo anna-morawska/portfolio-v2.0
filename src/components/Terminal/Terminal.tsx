@@ -15,13 +15,7 @@ interface PropsTerminalWindow {
 
 const $Terminal: FC<PropsTerminalWindow> = ({ onClick, name }) => {
   return (
-    <Window
-      name={name}
-      showMenu={false}
-      onClick={onClick}
-      iconPath={terminalIcon}
-      title="Terminal"
-    >
+    <Window name={name} showMenu={false} onClick={onClick} title="Terminal">
       <div className={styles.main}>
         <TypedText />
       </div>

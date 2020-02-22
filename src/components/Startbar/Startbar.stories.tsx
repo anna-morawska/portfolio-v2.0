@@ -13,6 +13,8 @@ export default {
 
 export const Main = () => (
   <Startbar
+    setWindowActive={() => {}}
+    openedWindows={[]}
     language={Languages.ENGLISH}
     changeLanguageHandler={action("clicked")}
     toggleStartMenu={action("clicked")}

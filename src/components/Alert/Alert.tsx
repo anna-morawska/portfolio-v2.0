@@ -14,14 +14,7 @@ interface AlertProps {
 
 const $Alert: FC<AlertProps> = ({ onClick, title, text, name }) => {
   return (
-    <Window
-      name={name}
-      alert
-      showMenu={false}
-      onClick={onClick}
-      iconPath={windowsIcon}
-      title={title}
-    >
+    <Window name={name} alert showMenu={false} onClick={onClick} title={title}>
       <div className={styles.main}>
         <div>
           <img src={alertIcon} alt="Alert Icon" />

@@ -20,7 +20,6 @@ const $OutlookWindow: FC<PropsOutlookWindow> = ({ onClick, name }) => {
       name={name}
       showMenu={true}
       onClick={onClick}
-      iconPath={outlookIcon}
       title={translate("outlookWindow.newMessage")}
     >
       <form className={styles.main}>

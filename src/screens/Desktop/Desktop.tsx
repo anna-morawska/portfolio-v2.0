@@ -68,7 +68,7 @@ const Desktop: React.FC = () => {
         })}
         {alerts.map(alertName => (
           <Alert
-            name={alertName}
+            name={windowTypes.ALERT}
             key={alertName}
             onClick={onClickAlertHandler(alertName)}
             title={translate("alert.title")}

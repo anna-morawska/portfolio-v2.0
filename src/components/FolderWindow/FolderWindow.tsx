@@ -19,13 +19,7 @@ const $FolderWindow: FC<PropsFolderWindow> = ({
   name
 }) => {
   return (
-    <Window
-      name={name}
-      showMenu={true}
-      onClick={onClick}
-      iconPath={folderIcon}
-      title={title}
-    >
+    <Window name={name} showMenu={true} onClick={onClick} title={title}>
       <div className={styles.folderWindow}>{children}</div>
     </Window>
   );

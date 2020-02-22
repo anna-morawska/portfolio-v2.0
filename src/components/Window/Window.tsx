@@ -9,7 +9,6 @@ interface PropsWindow {
   name: string;
   children: ReactNode;
   showMenu: boolean;
-  iconPath: string;
   title: string | ReactNode;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   alert?: boolean;
@@ -19,11 +18,11 @@ interface PropsWindow {
 const Window: FC<PropsWindow> = ({
   children,
   showMenu,
-  iconPath,
   title,
   onClick,
   alert,
-  image
+  image,
+  name
 }) => {
   return (
     <div
@@ -32,7 +31,7 @@ const Window: FC<PropsWindow> = ({
         [styles.imageWindow]: image
       })}
     >
-      <WindowTitle iconPath={iconPath} title={title} onClick={onClick} />
+      <WindowTitle name={name} title={title} onClick={onClick} />
       {showMenu && <WindowMenu />}
       {children}
     </div>

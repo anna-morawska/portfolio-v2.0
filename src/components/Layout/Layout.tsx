@@ -1,7 +1,10 @@
 import React, { createContext, useRef, Context } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { openStartMenuAction } from "../../store/actions/layout";
+import {
+  openStartMenuAction,
+  setActiveWindow
+} from "../../store/actions/layout";
 import { IStore } from "../../store/reducers/rootReducer";
 import { changeLanguage, Languages } from "../../store/actions/language";
 
@@ -17,6 +20,9 @@ const Layout: React.FC = ({ children }) => {
   const isStartMenuOpen = useSelector(
     (state: IStore) => state.layout.isStartMenuOpen
   );
+  const openedWindows = useSelector(
+    (state: IStore) => state.layout.openedWindows
+  );
   const startButtonRef = useRef(null);
 
   const changeLanguageHandler = () => {
@@ -26,19 +32,23 @@ const Layout: React.FC = ({ children }) => {
   };
 
   const toggleStartMenu = () => {
-    if (!isStartMenuOpen) {
-      dispatch(openStartMenuAction(!isStartMenuOpen));
-    }
+    dispatch(openStartMenuAction(!isStartMenuOpen));
   };
 
   const closeStartMenu = () => {
     dispatch(openStartMenuAction(false));
   };
 
+  const setWindowActive = (name: string) => {
+    dispatch(setActiveWindow(name));
+  };
+
   return (
     <ClickOutsideContext.Provider value={startButtonRef}>
       <div className={styles.desktop}>
         <Startbar
+          setWindowActive={setWindowActive}
+          openedWindows={openedWindows}
           language={language}
           changeLanguageHandler={changeLanguageHandler}
           toggleStartMenu={toggleStartMenu}

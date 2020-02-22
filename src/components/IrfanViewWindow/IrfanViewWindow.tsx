@@ -15,14 +15,7 @@ const IrfanViewWindow: FC<PropsIrfanViewWindow> = ({
   onClick,
   name
 }) => (
-  <Window
-    name={name}
-    image
-    showMenu={true}
-    onClick={onClick}
-    iconPath={irfanViewIcon}
-    title="InfraView"
-  >
+  <Window name={name} image showMenu={true} onClick={onClick} title="InfraView">
     <div className={styles.main}>
       <img src={imgUrl} />
     </div>

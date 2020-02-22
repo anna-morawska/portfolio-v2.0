@@ -1,8 +1,10 @@
 import React, { FC, ReactNode } from "react";
+import { Icon } from "../";
+
 import styles from "./StartMenuItem.module.scss";
 
 interface PropsStartMenuItem {
-  iconPath: string;
+  name: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   title: string | ReactNode;
   side?: StartMenuItemSide;
@@ -13,13 +15,9 @@ enum StartMenuItemSide {
   RIGHT = "RIGHT"
 }
 
-const StartMenuItem: FC<PropsStartMenuItem> = ({
-  iconPath,
-  onClick,
-  title
-}) => (
+const StartMenuItem: FC<PropsStartMenuItem> = ({ name, onClick, title }) => (
   <div className={styles.startMenuItem} onClick={onClick}>
-    <img src={iconPath} />
+    <Icon name={name} />
     <span>{title}</span>
   </div>
 );

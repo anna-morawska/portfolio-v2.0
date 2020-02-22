@@ -57,8 +57,8 @@ const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
         <div className={styles.column_left}>
           {leftSideMenu.map(item => (
             <StartMenuItem
-              key={item.iconPath}
-              iconPath={item.iconPath}
+              key={item.title?.toString()}
+              name={item.title?.toString()}
               onClick={onClickHandler(item.action)}
               title={item.title}
             />
@@ -71,8 +71,8 @@ const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
         <div className={styles.column_right}>
           {rightSideMenu.map(item => (
             <StartMenuItem
-              key={item.iconPath}
-              iconPath={item.iconPath}
+              key={item.title?.toString()}
+              name={item.title?.toString()}
               onClick={onClickHandler(item.action)}
               title={item.title}
             />

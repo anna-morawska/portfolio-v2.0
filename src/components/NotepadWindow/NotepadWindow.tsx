@@ -12,13 +12,7 @@ interface PropsNotepad {
 
 const NotepadWindow: FC<PropsNotepad> = ({ text, onClick, name }) => {
   return (
-    <Window
-      name={name}
-      showMenu={true}
-      onClick={onClick}
-      iconPath={noteIcon}
-      title="readme.txt"
-    >
+    <Window name={name} showMenu={true} onClick={onClick} title="readme.txt">
       <div className={styles.main}>
         <p>-------------------------------------</p>
         <p>-------------|| ReadMe ||------------</p>
