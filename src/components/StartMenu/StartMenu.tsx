@@ -50,7 +50,7 @@ const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
   return (
     <div ref={wrapperRef} className={styles.startMenu}>
       <header className={styles.header}>
-        <img src={userPhotoIcon} />
+        <img alt="user" src={userPhotoIcon} />
         <span>{translate("startMenu.username")}</span>
       </header>
       <main className={styles.main}>
@@ -65,7 +65,7 @@ const StartMenu: FC<IStartMenu> = ({ onClickOutsideHandler }) => {
           ))}
           <div className={styles.other}>
             <span>{translate("startMenu.allPrograms")}</span>
-            <img src={rightArrowIcon} />
+            <img alt="all programs" src={rightArrowIcon} />
           </div>
         </div>
         <div className={styles.column_right}>

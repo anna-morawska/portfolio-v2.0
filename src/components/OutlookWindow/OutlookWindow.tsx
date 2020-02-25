@@ -5,7 +5,6 @@ import { withResizable } from "../../hoc/withResizable";
 import { withDraggable } from "../../hoc/withDraggable";
 
 import emailIcon from "../../assets/newEmail.png";
-import outlookIcon from "../../assets/outlook.png";
 
 import styles from "./OutlookWindow.module.scss";
 

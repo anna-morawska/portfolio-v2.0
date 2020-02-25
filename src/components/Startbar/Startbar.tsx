@@ -27,7 +27,7 @@ const Startbar: FC<PropsStartbar> = ({
     (name: string) => () => {
       setWindowActive(name);
     },
-    []
+    [setWindowActive]
   );
 
   return (

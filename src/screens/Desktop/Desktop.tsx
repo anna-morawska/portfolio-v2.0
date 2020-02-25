@@ -43,7 +43,7 @@ const Desktop: React.FC = () => {
     (name: string) => () => {
       dispatch(closeAlert(name));
     },
-    []
+    [dispatch]
   );
 
   const openReadmeHandler = useCallback(
@@ -51,7 +51,7 @@ const Desktop: React.FC = () => {
       dispatch(openWindow(windowTypes.NOTEPAD));
       dispatch(openReadmeAction(name, content));
     },
-    []
+    [dispatch]
   );
 
   const openImageHandler = useCallback(
@@ -59,7 +59,7 @@ const Desktop: React.FC = () => {
       dispatch(openWindow(windowTypes.IRFAN_VIEW));
       dispatch(openImageAction(name, imageUrl));
     },
-    []
+    [dispatch]
   );
 
   const onClickFolderHandler = useCallback(
@@ -67,14 +67,14 @@ const Desktop: React.FC = () => {
       dispatch(fetchedFolderContent(name));
       dispatch(openWindow(name));
     },
-    []
+    [dispatch]
   );
 
   const onCloseWindowHandler = useCallback(
     (name: string) => () => {
       dispatch(closeWindow(name));
     },
-    []
+    [dispatch]
   );
 
   return (

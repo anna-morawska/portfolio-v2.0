@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import styles from "./Alert.module.scss";
 import { Window } from "../";
-import windowsIcon from "../../assets/windows_icon.png";
 import alertIcon from "../../assets/alert.png";
 import { withDraggable } from "../../hoc/withDraggable";
 

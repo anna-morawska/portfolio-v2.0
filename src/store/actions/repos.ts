@@ -66,12 +66,14 @@ export const fetchRepos = () => async (dispatch: Dispatch) => {
   }
 };
 
-export const loadFolderContent = (name: string, loading: boolean) =>
-  <ILoadFolderContentAction>{
-    type: ActionTypes.LOAD_FOLDER_CONTENT,
-    name,
-    loading
-  };
+export const loadFolderContent = (
+  name: string,
+  loading: boolean
+): ILoadFolderContentAction => ({
+  type: ActionTypes.LOAD_FOLDER_CONTENT,
+  name,
+  loading
+});
 
 export const fetchedFolderContent = (name: string) => async (
   dispatch: Dispatch

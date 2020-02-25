@@ -18,7 +18,9 @@ const $IrfanViewWindow: FC<PropsIrfanViewWindow> = ({
 }) => (
   <Window name={name} image showMenu={true} onClick={onClick} title="InfraView">
     <div className={styles.main}>
-      <img src={imgUrl} />
+      <div>
+        <img alt="preview" src={imgUrl} />
+      </div>
     </div>
   </Window>
 );

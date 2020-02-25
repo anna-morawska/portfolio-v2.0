@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from "react";
-import styles from "./Clock.module.scss";
 
 interface PropsClock {}
 

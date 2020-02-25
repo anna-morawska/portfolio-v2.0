@@ -7,8 +7,7 @@ export interface ILoadingAction {
   payload: TLoading;
 }
 
-export const loadingAction = (loading: boolean) =>
-  <ILoadingAction>{
-    type: ActionTypes.LOADING,
-    payload: loading
-  };
+export const loadingAction = (loading: boolean): ILoadingAction => ({
+  type: ActionTypes.LOADING,
+  payload: loading
+});

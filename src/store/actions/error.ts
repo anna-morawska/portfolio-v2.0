@@ -7,8 +7,7 @@ export interface IErrorAction {
   payload: TError;
 }
 
-export const errorAction = (error: boolean) =>
-  <IErrorAction>{
-    type: ActionTypes.ERROR,
-    payload: error
-  };
+export const errorAction = (error: boolean): IErrorAction => ({
+  type: ActionTypes.ERROR,
+  payload: error
+});

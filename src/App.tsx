@@ -18,7 +18,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchRepos());
-  }, []);
+  }, [dispatch]);
 
   return (
     <IntlProvider locale="en" messages={messages[language]}>

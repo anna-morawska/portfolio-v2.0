@@ -15,7 +15,7 @@ async function parallel<T>(
   delayTime: number
 ): Promise<T> {
   const promises = [promise, delay(delayTime)];
-  const [output1, output2] = await Promise.all(promises);
+  const [output1] = await Promise.all(promises);
   return output1;
 }
 

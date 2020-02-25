@@ -4,7 +4,6 @@ import { Window } from "../";
 import { withResizable } from "../../hoc/withResizable";
 import { withDraggable } from "../../hoc/withDraggable";
 import { TypedText } from "./TypedText";
-import terminalIcon from "../../assets/console.png";
 import styles from "./Terminal.module.scss";
 
 interface PropsTerminalWindow {

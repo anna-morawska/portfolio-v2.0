@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useMemo } from "react";
 import { windowTypes } from "../StartMenu/StartMenuItemsList";
 
 import outlookIcon from "../../assets/outlook.png";
@@ -49,7 +49,7 @@ const getIconPath = (name: string) => {
 
 const Icon: FC<IconProps> = ({ name }) => {
   const iconPath = useMemo(() => getIconPath(name), [name]);
-  return <img src={iconPath} />;
+  return <img alt="icon" src={iconPath} />;
 };
 
 export { Icon };

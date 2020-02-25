@@ -5,8 +5,6 @@ import {
   openWindow
 } from "../../store/actions/layout";
 
-import { ReactNode } from "react";
-
 enum StartMenuItemSide {
   LEFT = "LEFT",
   RIGHT = "RIGHT"

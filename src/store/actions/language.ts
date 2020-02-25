@@ -10,8 +10,7 @@ export enum Languages {
   POLISH = "pl"
 }
 
-export const changeLanguage = (language: Languages) =>
-  <IChangeLanguageAction>{
-    type: ActionTypes.CHANGE_LANGUAGE,
-    payload: language
-  };
+export const changeLanguage = (language: Languages): IChangeLanguageAction => ({
+  type: ActionTypes.CHANGE_LANGUAGE,
+  payload: language
+});

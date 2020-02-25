@@ -51,7 +51,7 @@ const File: FC<PropsFile> = ({ fileName, type, onClick, href }) => {
 
   return (
     <div className={styles.file} onDoubleClick={onClickHandler}>
-      <img className={styles.icon} src={icon} draggable="false" />
+      <img alt="icon" className={styles.icon} src={icon} draggable="false" />
       <span className={styles.fileName}>{fileName}</span>
     </div>
   );
