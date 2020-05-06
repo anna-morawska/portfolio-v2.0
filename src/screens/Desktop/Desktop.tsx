@@ -6,11 +6,12 @@ import {
   closeAlert,
   closeWindow,
   openReadmeAction,
-  openImageAction
+  openImageAction,
 } from "../../store/actions/layout";
 import { fetchedFolderContent } from "../../store/actions/repos";
 import { IStore } from "../../store/reducers/rootReducer";
 import { windowTypes } from "../../components/StartMenu/StartMenuItemsList";
+import Cv from "../../assets/files/anna_morawska_cv.pdf";
 
 import {
   DraggableFile,
@@ -22,7 +23,7 @@ import {
   OutlookWindow,
   Terminal,
   NotepadWindow,
-  IrfanViewWindow
+  IrfanViewWindow,
 } from "../../components";
 
 import styles from "./Desktop.module.scss";
@@ -80,7 +81,7 @@ const Desktop: React.FC = () => {
   return (
     <Layout>
       <div className={styles.icons}>
-        {windows.map(windowName => {
+        {windows.map((windowName) => {
           if (windowName === windowTypes.OUTLOOK) {
             return (
               <OutlookWindow
@@ -124,14 +125,14 @@ const Desktop: React.FC = () => {
               name={windowName}
               key={windowName}
               title={windowName}
-              content={repos.find(repo => repo.name === windowName)}
+              content={repos.find((repo) => repo.name === windowName)}
               onClick={onCloseWindowHandler(windowName)}
               openReadmeHandler={openReadmeHandler}
               openImageHandler={openImageHandler}
             ></FolderWindow>
           );
         })}
-        {alerts.map(alertName => (
+        {alerts.map((alertName) => (
           <Alert
             name={windowTypes.ALERT}
             key={alertName}
@@ -140,7 +141,7 @@ const Desktop: React.FC = () => {
             text={translate("alert.text")}
           />
         ))}
-        {repos.map(repo => (
+        {repos.map((repo) => (
           <DraggableFile
             key={repo.id}
             fileName={repo.name}
@@ -148,6 +149,12 @@ const Desktop: React.FC = () => {
             onClick={onClickFolderHandler(repo.name)}
           ></DraggableFile>
         ))}
+        <a href={Cv} target="_blank">
+          <DraggableFile
+            fileName="anna_morawska_CV"
+            type={IconType.pdf}
+          ></DraggableFile>
+        </a>
       </div>
     </Layout>
   );
