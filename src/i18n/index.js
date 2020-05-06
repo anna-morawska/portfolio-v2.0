@@ -22,11 +22,11 @@ export default {
     "outlookWindow.receiver": "Adresat",
 
     "startMenu.username": "Anna Morawska",
-    "startMenu.allPrograms": "Najczęściej używane"
+    "startMenu.allPrograms": "Najczęściej używane",
   },
   pl: {
     "button.text": "Cześć",
     "seo.title": "Tytuł",
-    "seo.description": "Opis"
-  }
+    "seo.description": "Opis",
+  },
 };

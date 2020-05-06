@@ -1,13 +1,17 @@
-# base image
-FROM node:slim
+FROM node:alpine as builder
 
-# set working directory
 WORKDIR /app
 
-# install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install 
-RUN npm install react-scripts@3.4.0 -g 
+COPY package*.json ./
 
-# start app
-CMD ["npm", "start"]
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "build"]
+
+FROM nginx
+
+EXPOSE 80
+
+COPY --from=builder /app/build/ /usr/share/nginx/html/
