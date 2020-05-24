@@ -2,12 +2,12 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 
 import { rootDecorator } from "../../../.storybook/decorators";
-import { NotepadWindow } from "../";
+import { $NotepadWindow as NotepadWindow } from "../";
 
 export default {
   title: "NotepadWindow",
   component: NotepadWindow,
-  decorators: [rootDecorator]
+  decorators: [rootDecorator],
 };
 
 export const Main = () => (

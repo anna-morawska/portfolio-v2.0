@@ -2,12 +2,12 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 
 import { rootDecorator } from "../../../.storybook/decorators";
-import { IrfanViewWindow } from "../";
+import { $IrfanViewWindow as IrfanViewWindow } from "../";
 
 export default {
   title: "IrfanViewWindow",
   component: IrfanViewWindow,
-  decorators: [rootDecorator]
+  decorators: [rootDecorator],
 };
 
 export const Main = () => (

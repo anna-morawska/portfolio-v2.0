@@ -9,11 +9,19 @@ interface AlertProps {
   title: string | ReactNode;
   text: string | ReactNode;
   name: string;
+  style?: {};
 }
 
-const $Alert: FC<AlertProps> = ({ onClick, title, text, name }) => {
+const $Alert: FC<AlertProps> = ({ onClick, title, text, name, style }) => {
   return (
-    <Window name={name} alert showMenu={false} onClick={onClick} title={title}>
+    <Window
+      style={style}
+      name={name}
+      alert
+      showMenu={false}
+      onClick={onClick}
+      title={title}
+    >
       <div className={styles.main}>
         <div>
           <img src={alertIcon} alt="Alert Icon" />
@@ -29,4 +37,4 @@ const $Alert: FC<AlertProps> = ({ onClick, title, text, name }) => {
 
 const Alert = withDraggable<AlertProps>($Alert);
 
-export { Alert };
+export { $Alert, Alert };

@@ -13,6 +13,7 @@ interface PropsWindow {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   alert?: boolean;
   image?: boolean;
+  style?: {};
 }
 
 const Window: FC<PropsWindow> = ({
@@ -22,13 +23,15 @@ const Window: FC<PropsWindow> = ({
   onClick,
   alert,
   image,
-  name
+  name,
+  style,
 }) => {
   return (
     <div
+      style={style}
       className={classNames(styles.window, {
         [styles.alert]: alert,
-        [styles.imageWindow]: image
+        [styles.imageWindow]: image,
       })}
     >
       <WindowTitle name={name} title={title} onClick={onClick} />

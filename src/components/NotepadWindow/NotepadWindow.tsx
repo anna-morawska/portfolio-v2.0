@@ -26,4 +26,4 @@ const NotepadWindow = withDraggable<PropsNotepad>(
   withResizable<PropsNotepad>($NotepadWindow)
 );
 
-export { NotepadWindow };
+export { $NotepadWindow, NotepadWindow };

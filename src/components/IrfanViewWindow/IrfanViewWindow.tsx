@@ -14,7 +14,7 @@ interface PropsIrfanViewWindow {
 const $IrfanViewWindow: FC<PropsIrfanViewWindow> = ({
   imgUrl,
   onClick,
-  name
+  name,
 }) => (
   <Window name={name} image showMenu={true} onClick={onClick} title="InfraView">
     <div className={styles.main}>
@@ -29,4 +29,4 @@ const IrfanViewWindow = withDraggable<PropsIrfanViewWindow>(
   withResizable<PropsIrfanViewWindow>($IrfanViewWindow)
 );
 
-export { IrfanViewWindow };
+export { $IrfanViewWindow, IrfanViewWindow };

@@ -76,4 +76,4 @@ const OutlookWindow = withDraggable<PropsOutlookWindow>(
   withResizable<PropsOutlookWindow>($OutlookWindow)
 );
 
-export { OutlookWindow };
+export { $OutlookWindow, OutlookWindow };
