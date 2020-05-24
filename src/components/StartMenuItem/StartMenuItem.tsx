@@ -3,7 +3,7 @@ import { Icon } from "../";
 
 import styles from "./StartMenuItem.module.scss";
 
-interface PropsStartMenuItem {
+export interface PropsStartMenuItem {
   name: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   title: string | ReactNode;
@@ -12,7 +12,7 @@ interface PropsStartMenuItem {
 
 enum StartMenuItemSide {
   LEFT = "LEFT",
-  RIGHT = "RIGHT"
+  RIGHT = "RIGHT",
 }
 
 const StartMenuItem: FC<PropsStartMenuItem> = ({ name, onClick, title }) => (

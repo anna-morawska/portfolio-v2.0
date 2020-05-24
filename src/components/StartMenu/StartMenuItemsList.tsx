@@ -2,15 +2,15 @@ import {
   openAlert,
   IOpenAlertAction,
   IOpenWindowAction,
-  openWindow
+  openWindow,
 } from "../../store/actions/layout";
 
-enum StartMenuItemSide {
+export enum StartMenuItemSide {
   LEFT = "LEFT",
-  RIGHT = "RIGHT"
+  RIGHT = "RIGHT",
 }
 
-interface PropsStartMenuItem {
+export interface IStartMenuItem {
   action: IOpenAlertAction | IOpenWindowAction;
   title: string;
   side?: StartMenuItemSide;
@@ -27,50 +27,48 @@ export enum windowTypes {
   TERMINAL = "Terminal",
   ALERT = "Alert",
   NOTEPAD = "Notepad",
-  IRFAN_VIEW = "IrfanView"
+  IRFAN_VIEW = "IrfanView",
 }
 
-const startMenuItemsList: PropsStartMenuItem[] = [
+export const startMenuItemsList: IStartMenuItem[] = [
   {
     title: windowTypes.OUTLOOK,
     action: openWindow(windowTypes.OUTLOOK),
-    side: StartMenuItemSide.LEFT
+    side: StartMenuItemSide.LEFT,
   },
   {
     title: windowTypes.INTERNET_EXPLORER,
     action: openAlert(windowTypes.INTERNET_EXPLORER),
-    side: StartMenuItemSide.LEFT
+    side: StartMenuItemSide.LEFT,
   },
   {
     title: windowTypes.PAINT,
     action: openAlert(windowTypes.PAINT),
-    side: StartMenuItemSide.LEFT
+    side: StartMenuItemSide.LEFT,
   },
   {
     title: windowTypes.GIT_BASH,
     action: openAlert(windowTypes.GIT_BASH),
-    side: StartMenuItemSide.RIGHT
+    side: StartMenuItemSide.RIGHT,
   },
   {
     title: windowTypes.VSC,
     action: openAlert(windowTypes.VSC),
-    side: StartMenuItemSide.RIGHT
+    side: StartMenuItemSide.RIGHT,
   },
   {
     title: windowTypes.PHOTOSHOP,
     action: openAlert(windowTypes.PHOTOSHOP),
-    side: StartMenuItemSide.RIGHT
+    side: StartMenuItemSide.RIGHT,
   },
   {
     title: windowTypes.CHROME,
     action: openAlert(windowTypes.CHROME),
-    side: StartMenuItemSide.RIGHT
+    side: StartMenuItemSide.RIGHT,
   },
   {
     title: windowTypes.TERMINAL,
     action: openWindow(windowTypes.TERMINAL),
-    side: StartMenuItemSide.RIGHT
-  }
+    side: StartMenuItemSide.RIGHT,
+  },
 ];
-
-export { startMenuItemsList };

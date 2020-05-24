@@ -1,67 +1,66 @@
-.adress{
-    width: 100%;
-    background-color: #efebdf;
-    padding: 0 .8rem;
-    border-bottom: 2px solid #d3d3d3;
-    font-family: 'Consolas';
-    display: flex;
+.address {
+  width: 100%;
+  background-color: #efebdf;
+  padding: 0 0.8rem;
+  border-bottom: 2px solid #d3d3d3;
+  font-family: "Consolas";
+  display: flex;
 }
 
-.adress button {
-    border-radius: 4px;
-    outline: none;
-    border: 2px solid #d3d3d3;
-    align-self: center;
-    padding: 1rem;
-    margin-left: auto;
-    transition: all .1s;
+.address button {
+  border-radius: 4px;
+  outline: none;
+  border: 2px solid #d3d3d3;
+  align-self: center;
+  padding: 1rem;
+  margin-left: auto;
+  transition: all 0.1s;
 }
 
-.adress button:hover {
-    background-color: #d3d3d3;
-    cursor: pointer;
+.address button:hover {
+  background-color: #d3d3d3;
+  cursor: pointer;
 }
 
-.adress button:disabled {
-   cursor: not-allowed;
+.address button:disabled {
+  cursor: not-allowed;
 }
 
-.adress img {
-    height: 5rem;
-    width: 5rem;
+.address img {
+  height: 5rem;
+  width: 5rem;
 }
 
-.adress span {
-    margin-right: 1.5rem;
-    font-size: 1.4rem;
-    display: inline-block;
-    width: 7rem;
+.address span {
+  margin-right: 1.5rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  width: 7rem;
 }
 
-.adressInputs{
-    padding: 1rem;
-    flex-grow: 1;
+.addressInputs {
+  padding: 1rem;
+  flex-grow: 1;
 }
 
-.adressInputs input{
-    padding: 3px 1rem;
-    font-size: 1.2rem;
-    font-family: 'Consolas';
-    border: 2px solid #d3d3d3;
-    width: calc(100% - 9.5rem);
-    outline: none;
+.addressInputs input {
+  padding: 3px 1rem;
+  font-size: 1.2rem;
+  font-family: "Consolas";
+  border: 2px solid #d3d3d3;
+  width: calc(100% - 9.5rem);
+  outline: none;
 }
 
-.adressInputs div{
-    padding: .3rem 0;
+.addressInputs div {
+  padding: 0.3rem 0;
 }
 
-
-.main textarea{
-    font-family: inherit;
-    width: 100%;
-    padding: .5rem;
-    border: none;
-    outline: none;
-    resize: none;
+.main textarea {
+  font-family: inherit;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  resize: none;
 }

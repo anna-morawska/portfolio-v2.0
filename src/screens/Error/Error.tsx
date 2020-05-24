@@ -5,9 +5,9 @@ import styles from "./Error.module.scss";
 interface ErrorProps {}
 
 const Error: FC<ErrorProps> = () => {
-  const [isBlueSceenVisible, setIsBlueScreenVisible] = useState(false);
+  const [isBlueScreenVisible, setIsBlueScreenVisible] = useState(false);
 
-  return isBlueSceenVisible ? (
+  return isBlueScreenVisible ? (
     <div className={styles.blueScreen} />
   ) : (
     <Layout>

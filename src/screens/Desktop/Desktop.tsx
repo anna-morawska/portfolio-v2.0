@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -28,8 +28,24 @@ import {
 
 import styles from "./Desktop.module.scss";
 
+interface IFormInitialState {
+  email: string;
+  message: string;
+  topic: string;
+}
+
+const formInitialState: IFormInitialState = {
+  email: "",
+  message: "",
+  topic: "",
+};
+
 const Desktop: React.FC = () => {
   const dispatch = useDispatch();
+  const [formValues, setFormValues] = useState<IFormInitialState>(
+    formInitialState
+  );
+
   const repos = useSelector((state: IStore) => state.repos);
   const alerts = useSelector((state: IStore) => state.layout.openedAlerts);
   const windows = useSelector((state: IStore) => state.layout.openedWindows);
@@ -78,6 +94,48 @@ const Desktop: React.FC = () => {
     [dispatch]
   );
 
+  // send email netlify
+
+  const encode = (data: Record<string, any>) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  };
+
+  const onInputChangeHandler = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormValues({
+      ...formValues,
+      [e.target.value]: e.target.name,
+    });
+  };
+
+  const handleEmailSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const form = event.target;
+
+    // error alert
+    // success alert
+
+    fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: encode({
+        // "form-name": form.getAttribute("name"),
+        ...formValues,
+      }),
+    })
+      .then(() => {
+        setFormValues(formInitialState);
+      })
+      .catch((error) => {});
+  };
+
   return (
     <Layout>
       <div className={styles.icons}>
@@ -85,6 +143,8 @@ const Desktop: React.FC = () => {
           if (windowName === windowTypes.OUTLOOK) {
             return (
               <OutlookWindow
+                onInputChangeHandler={onInputChangeHandler}
+                handleEmailSubmit={handleEmailSubmit}
                 name={windowName}
                 key={windowName}
                 onClick={onCloseWindowHandler(windowName)}
@@ -149,12 +209,11 @@ const Desktop: React.FC = () => {
             onClick={onClickFolderHandler(repo.name)}
           ></DraggableFile>
         ))}
-        <a href={Cv} target="_blank">
-          <DraggableFile
-            fileName="anna_morawska_CV"
-            type={IconType.pdf}
-          ></DraggableFile>
-        </a>
+        <DraggableFile
+          href={Cv}
+          fileName="anna_morawska_CV"
+          type={IconType.pdf}
+        ></DraggableFile>
       </div>
     </Layout>
   );

@@ -1,18 +1,17 @@
-import React, { createContext, useRef, Context } from "react";
+import React, { useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
   openStartMenuAction,
-  setActiveWindow
+  setActiveWindow,
 } from "../../store/actions/layout";
 import { IStore } from "../../store/reducers/rootReducer";
 import { changeLanguage, Languages } from "../../store/actions/language";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
-import { Startbar, StartMenu } from "../../components";
+import { Startbar, StartMenuContainer as StartMenu } from "../../components";
 
 import styles from "./Layout.module.scss";
-
-export const ClickOutsideContext: Context<any> = createContext(null);
 
 const Layout: React.FC = ({ children }) => {
   const dispatch = useDispatch();
@@ -23,7 +22,6 @@ const Layout: React.FC = ({ children }) => {
   const openedWindows = useSelector(
     (state: IStore) => state.layout.openedWindows
   );
-  const startButtonRef = useRef(null);
 
   const changeLanguageHandler = () => {
     const changeToLanguage =
@@ -43,22 +41,28 @@ const Layout: React.FC = ({ children }) => {
     dispatch(setActiveWindow(name));
   };
 
+  const startMenuRef = useRef<HTMLDivElement | null>(null);
+  const startButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useOnClickOutside({
+    ref: startMenuRef,
+    onClickOutsideHandler: closeStartMenu,
+    ignoreRef: startButtonRef,
+  });
+
   return (
-    <ClickOutsideContext.Provider value={startButtonRef}>
-      <div className={styles.desktop}>
-        <Startbar
-          setWindowActive={setWindowActive}
-          openedWindows={openedWindows}
-          language={language}
-          changeLanguageHandler={changeLanguageHandler}
-          toggleStartMenu={toggleStartMenu}
-        />
-        {isStartMenuOpen && (
-          <StartMenu onClickOutsideHandler={closeStartMenu} />
-        )}
-        {children}
-      </div>
-    </ClickOutsideContext.Provider>
+    <div className={styles.desktop}>
+      <Startbar
+        ref={startButtonRef}
+        setWindowActive={setWindowActive}
+        openedWindows={openedWindows}
+        language={language}
+        changeLanguageHandler={changeLanguageHandler}
+        toggleStartMenu={toggleStartMenu}
+      />
+      {isStartMenuOpen && <StartMenu ref={startMenuRef} />}
+      {children}
+    </div>
   );
 };
 

@@ -1,15 +1,19 @@
-import React from "react";
-import { action } from "@storybook/addon-actions";
+import React, { createRef } from "react";
 
 import { rootDecorator } from "../../../.storybook/decorators";
 import { StartMenu } from "../";
+import { startMenuItemsList } from "./StartMenuItemsList";
 
 export default {
   title: "StartMenu",
   component: StartMenu,
-  decorators: [rootDecorator]
+  decorators: [rootDecorator],
 };
 
-export const Main = () => (
-  <StartMenu onClickOutsideHandler={action("clicked outside")} />
-);
+export const Main = () => {
+  const startMenuRef = createRef<HTMLDivElement>();
+
+  return (
+    <StartMenu forwardedRef={startMenuRef} menuItems={startMenuItemsList} />
+  );
+};
